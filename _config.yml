@@ -28,7 +28,7 @@ url: "https://timbeurskens.github.io" # the base hostname & protocol for your si
 github_username:  timbeurskens
 
 # Build settings
-theme: amitmerchant1990/reverie
+remote_theme: amitmerchant1990/reverie
 plugins:
   - jekyll-feed
 
