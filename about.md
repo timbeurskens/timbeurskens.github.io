@@ -5,4 +5,4 @@ aside: true
 
 I'm still working on this page
 
-{% include site-form.html %}
+{% include site-form.html netlify_form=true %}
