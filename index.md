@@ -1,8 +1,9 @@
 ---
 title: Welcome to my website
-feature_image: "https://picsum.photos/1300/400?image=989"
+feature_image: "https://live.staticflickr.com/65535/49022346828_48aeddc006_k_d.jpg"
 feature_text: |
-  ## Hi there
+  ## Hi there!
 ---
 
 There isn't much going on here yet, but watch this space
+
