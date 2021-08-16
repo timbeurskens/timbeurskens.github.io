@@ -1,5 +1,7 @@
 ---
 layout: blog
 collectionpage: posts
-title: Blog
+title: My projects
 ---
+
+Nothing to see here :)

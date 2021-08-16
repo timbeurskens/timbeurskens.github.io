@@ -5,5 +5,9 @@ feature_text: |
   ## Hi there!
 ---
 
-There isn't much going on here yet, but watch this space
+At this moment there isn't much going on here.
 
+I'm currently working on an article for my [SAT](https://en.wikipedia.org/wiki/Boolean_satisfiability_problem)-solver.
+This is a small project I've been working on over the last year and I want to highlight my experiences in [Go](https://golang.org/) and the challenges (and opportunities) in SAT-related problems.
+
+Other projects, such as my Lindenmayer-system carpet-pattern generator, will be posted on this website somewhere in the future as well.
