@@ -12,7 +12,7 @@
   {% assign thanks_url = "/thanks/" %}
 {% endif %}
 
-<form class="form  form--{{ name_id }}" method="post" name="{{ name }}" action="{{ thanks_url }}"
+<form class="form  form--{{ name_id }}" method="post" name="{{ name }}" action="{{ site.url }}{{ thanks_url }}"
   {% if include.netlify_form %}
     netlify-honeypot="bot-field"
     netlify
@@ -38,7 +38,7 @@
     {% else %}
       <input type="text" name="_gotcha" style="display:none">
       <input type="hidden" name="_subject" value="{{ site.title }} submission from {{ name }}">
-      <input type="hidden" name="_next" value="{{ thanks_url }}" />
+      <input type="hidden" name="_next" value="{{ site.url }}{{ thanks_url }}" />
     {% endif %}
   </fieldset>
 </form>
