@@ -5,13 +5,13 @@ date: 2022-03-14 17:30:00 +0100
 categories: project
 ---
 
-# Introduction
+## Introduction
 
 In the past months I have been working on a variety of SAT solvers and model checkers. I've done this mainly as a personal exercise after being introduced to the concept in some university courses. At this point however, I am getting increasingly more convinced the constraint-solving paradigm is a widely underappreciated concept which could change the way we build software to solve complex problems. This is why I am planning on publishing a few articles illustrating how constraint solvers could be applied on real-world problems, how the algorithms behind constraint solvers work, and why pushing for further research in optimizing these solvers is not a wasted effort. I am not an expert in this field, which I can easily demonstrate by the performance of my solvers compared to state-of-the-art solvers such as [Z3](https://github.com/Z3Prover/z3).
 
 In this first article I will focus on what constraint solvers are and how we can apply constraint solving to solve some fun puzzles. Although I am using the term "constraint solver" quite a lot, this first article will mainly focus on boolean satisfiablility solvers (SAT solvers). More advanced methods of constraint solvers might be discussed in future articles. Let's first see what SAT solvers are and what they have to do with 
 
-# What is a SAT solver?
+## What is a SAT solver?
 
 A SAT solver, in short, is an application which solves the [boolean satisfiability problem](https://en.wikipedia.org/wiki/Boolean_satisfiability_problem). "What is the boolean satisfiability problem?" You might ask. This is a famous problem in mathematics and computer science in which the goal is to find an assignment of variables such that a given boolean formula evaluates to 'true'. For the readers that are not that familiar with boolean equations, lets show an example with some basic mathematical inequalities:
 
@@ -50,7 +50,7 @@ This is an example of the boolean satisfiability problem and finding solutions t
 
 But what can we actually do with this?
 
-# The N-Queens problem
+## The N-Queens problem
 
 Suppose we have a chess board of 8 by 8 squares and we want to place eight queen pieces on the board such that no queen can attack another queen. The rules of chess state that a queen can move any number of squares straight or diagonally in any direction. This is the famous eight-queens problem.
 
@@ -68,7 +68,7 @@ Additionally we would need to write code to efficiently check whether an arrange
 
 It turns out that this is actually possible for a wide range of problems and constraint solvers play a major role in this process.
 
-## Translating to SAT
+### Translating to SAT
 
 We've learned that SAT solvers are made to find satisfying assignments to boolean variables in boolean equations. In the N-Queens puzzle we were looking for arrangements of queen pieces on a chess board. Could it be that we're trying to solve the same problem?
 
@@ -187,7 +187,7 @@ Switzerland, Sweden, Lithuania, Iceland, Malta, Ukraine, Finland;
 ```
 
 
-# Complexity
+## Complexity
 
 The eight queens and clique problems are not just entertaining puzzles which we can solve with SAT solvers. These problems all belong to the NP complexity class. In overly simple terms this is a class of problems for which we know it is "easy" to check whether a solution is valid or not, but we don't know how we can efficiently compute a solution. 
 
