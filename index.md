@@ -5,9 +5,9 @@ feature_text: |
   ## Hi there!
 ---
 
-At this moment there isn't much going on here.
+I've recently published my first article on use cases for boolean satisfiability solvers.
+Satisfiability solvers have intrigued me for some time now so I decided to write an article on why I think more people should focus on SAT in their development efforts. Until now I've just scratched the surface of constraint solvers. Later I will write about more advanced solvers and practical applications.
 
-I'm currently working on an article for my [SAT](https://en.wikipedia.org/wiki/Boolean_satisfiability_problem)-solver.
-This is a small project I've been working on over the last year and I want to highlight my experiences in [Go](https://golang.org/) and the challenges (and opportunities) in SAT-related problems.
+Let me know what you think of it!
 
 Other projects, such as my Lindenmayer-system carpet-pattern generator, will be posted on this website somewhere in the future as well.
