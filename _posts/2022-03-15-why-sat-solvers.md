@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "Why do we need SAT solvers?"
-date: 2022-03-15 20:00:00 +0100
-categories: project complexity
+date: 2022-03-14 17:30:00 +0100
+categories: project complexity solving sat
 ---
 
 # Introduction
@@ -70,7 +70,9 @@ It turns out that this is actually possible for a wide range of problems and con
 
 ## Translating to SAT
 
-We've learned that SAT solvers are made to find satisfying assignments to boolean variables in boolean equations. In the N-Queens puzzle we were looking for arrangements of queen pieces on a chess board. There are 64 squares on an 8x8 chess board. A square can either contain a queen or not, so we could define 64 boolean variables: one for each square, such that if the variable for a certain square is `true`, there is a queen on that square. If we could translate the eight-queens problem to a boolean equation with these variables we could let a SAT solver compute the satisfying assignment for the eight-queens problem. Is this possible?
+We've learned that SAT solvers are made to find satisfying assignments to boolean variables in boolean equations. In the N-Queens puzzle we were looking for arrangements of queen pieces on a chess board. Could it be that we're trying to solve the same problem?
+
+There are 64 squares on an 8x8 chess board. A square can either contain a queen or not, so we could define 64 boolean variables: one for each square, such that if the variable for a certain square is `true`, there is a queen on that square. If we could translate the eight-queens problem to a boolean equation with these variables we could let a SAT solver compute the satisfying assignment for the eight-queens problem. Is this possible?
 
 Yes, here it is:
 
@@ -143,10 +145,50 @@ The entire function is a conjunction (multiple sub-formulas, joined with an `and
 
 The eight-queens formula describes exactly the properties we're interested in: there can be exactly one queen per row and column, and at most one queen can be placed per diagonal. If we feed this formula into our SAT solver, we can compute every valid assignment of the eight-queens problem of which there are 92 in total.
 
-## Eurovision Song Festival
+## Eurovision Song Contest
 
+Let's now try to solve real-world problems: the Eurovision Song Contest, the annual event where world politics and the music industry merge into a strangely colourful contest. During the finals each participating country can award points to other particpants in two separate rounds. The first points are awarded by a professional jury, where the ten top scoring countries are awarded with a score between 1 and 12 points. The second voting round is similar, only the jury is now the audience itself. Eventually each country will have rewarded at least ten and at most twenty other countries with some points.
+
+Historically some countries tend to vote for each other, forming so-called cliques. A clique is defined as a sub-set of vertices in a graph such that each vertex in the clique is adjacent to every other vertex in the clique. Finding these cliques is not that easy given the number of participants and the number of votes. The image below shows the voting behaviour in the 2021 edition of Eurovision.
+
+![eurovision network](/assets/eurovision.png)
+
+Similar to the eight queens problem the cliques problem is easy to verify: for some given subset of vertices we can check whether each vertex contains edges to every other vertex in the subset. Some trivial cliques are easy to find, such as individual vertices, pairs of connected vertices and triangles. Finding the largest clique is a lot harder however, as checking for the largest clique means we must compare size of a candidate max clique to every other clique.
+
+Again, we can put quite some effort into building algorithms to efficiently search for cliques in the graph, or we can try and transform the cliques problem into a problem we can already solve: boolean satisfiability.
+
+A vertex in the graph can either belong to a candidate clique or not. We can represent this property by introducing boolean variables for each country in the network. If two vertices belong to the same clique, there must be an edge connecting these vertices. In other words, if there is no edge between two vertices, they cannot both belong to the same clique.
+
+In the 2021 edition of Eurovision, Spain did not vote for Belgium. This means Spain and Belgium cannot be in the same clique:
+
+```
+-(Spain & Belgium) &
+...
+```
+
+We can easily repeat this procedure for every pair of vertices, yielding a large conjunction of clauses which we can evaluate in a SAT solver.
+Additionally we can restrict the solution to only show cliques such that no larger clique exists (max cliques):
+
+```
+...
+
+forall v_Spain, v_Belgium, ... # (
+    -(v_Spain & v_Belgium) &
+    ...
+) => [Spain, Belgium, ...] >= [v_Spain, v_Belgium, ...]
+```
+
+The final formula is too large to show in this article but the maximal cliques found by the solver are displayed below:
+
+```
+Norway, Lithuania, Iceland, Malta, Italy, Ukraine, Finland;
+Norway, Sweden, Lithuania, Iceland, Malta, Ukraine, Finland;
+Switzerland, Sweden, Lithuania, Iceland, Malta, Ukraine, Finland;
+```
 
 
 # Complexity
 
-The eight queens and clique problems are not just entertaining puzzles which we can solve with SAT solvers. These problems all belong to the NP complexity class. In overly simple terms this is a class of problems for which we know it is "easy" to check whether a solution is valid or not, but we don't know how we can efficiently compute a solution.
+The eight queens and clique problems are not just entertaining puzzles which we can solve with SAT solvers. These problems all belong to the NP complexity class. In overly simple terms this is a class of problems for which we know it is "easy" to check whether a solution is valid or not, but we don't know how we can efficiently compute a solution. 
+
+A lot of practical problems such as scheduling or computing optimal routes belong to this class as well. These problems are often infeasible to compute unless we apply some smart trics to simplify the problem. These optimizations are designed for a specific problem which means developers working on different problems cannot re-use the optimization results from other developers working on slightly different problems. If instead these optimization efforts were focused on making SAT solving more efficient, more people could benefit from this collective work. Especially when multiprocessing and GPU computations are getting more and more important I think it's in everyone's interest that we have a computational framework which can optimally solve a common problem by maximally utilizing it's resources, such that we can eventually simply describe our problem and not worry about optimization.
