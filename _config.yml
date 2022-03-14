@@ -39,7 +39,7 @@ plugins:
 
 # 3. Gem settings
 paginate: 5 # jekyll-paginate > items per page
-paginate_path: posts/page:num # jekyll-paginate > blog page
+paginate_path: projects/page:num # jekyll-paginate > blog page
 
 author: Tim Beurskens # jekyll-seo-tag > default author
 social: # jekyll-seo-tag > social overrides
