@@ -2,7 +2,7 @@
 layout: post
 title: "Why do we need SAT solvers?"
 date: 2022-03-14 17:30:00 +0100
-categories: project complexity solving sat
+categories: project
 ---
 
 # Introduction
