@@ -26,7 +26,7 @@ x + y > 6
 
 If we assign the value 6 to variable `x` and 1 to `y`, all inequalities are satisfied. If we set `y` to 0, we can see that the last inequality: `x + y > 6` is not valid anymore. The solution we just found is not unique however. In fact, if we assume `x` and `y` belong to the set of real numbers, there is an infinite number of valid solutions. If we restrict `x` and `y` to the domain of natural numbers (whole positive numbers, including 0), there are only 5 solutions.
 
-Instead of using numbers, we could also use boolean (true or false) as values for our variables. In this case addition with the `+` operator becomes a logical `or`, and multiplication (`*`) is equal to the logical `and`. Additionally we could add a negation sign in front of a variable, which in boolean algebra denotes the `not` operator. The satisfying assignments for the formula `(x + y) * (-x + y)` are `(false, true)` and `(true, true)` for `(x, y)`. We can easily verify whether the assignment we've found is correct by simply filling in the values for `x` and `y` into the formula:
+Instead of using numbers, we could also use boolean (true or false) as values for our variables. In this case addition with the `+` operator becomes a logical `or`, and multiplication (`*`) is equal to the logical `and`. Additionally we could add a negation sign in front of a variable, which in boolean algebra denotes the `not` operator. The satisfying assignments for the formula $(x + y) * (-x + y)$ are `(false, true)` and `(true, true)` for `(x, y)`. We can easily verify whether the assignment we've found is correct by simply filling in the values for `x` and `y` into the formula:
 
 ```
 (x + y) * (-x + y) for x = false and y = true
