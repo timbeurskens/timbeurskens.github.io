@@ -26,7 +26,7 @@ x + y > 6
 
 If we assign the value 6 to variable `x` and 1 to `y`, all inequalities are satisfied. If we set `y` to 0, we can see that the last inequality: `x + y > 6` is not valid anymore. The solution we just found is not unique however. In fact, if we assume `x` and `y` belong to the set of real numbers, there is an infinite number of valid solutions. If we restrict `x` and `y` to the domain of natural numbers (whole positive numbers, including 0), there are only 5 solutions.
 
-Instead of using numbers, we could also use boolean (true or false) as values for our variables. In this case addition with the `+` operator becomes a logical `or`, and multiplication (`*`) is equal to the logical `and`. Additionally we could add a negation sign in front of a variable, which in boolean algebra denotes the `not` operator. The satisfying assignments for the formula `(x + y) * (-x + y)` are `(false, true)` and `(true, true)` for `(x, y)`. We can easily verify whether the assignment we've found is correct by simply filling in the values for `x` and `y` into the formula:
+Instead of using numbers, we could also use booleans (true or false) as values for our variables. In this case addition with the `+` operator becomes a logical `or`, and multiplication (`*`) is equal to the logical `and`. Additionally we could add a negation sign in front of a variable, which in boolean algebra denotes the `not` operator. The satisfying assignments for the formula `(x + y) * (-x + y)` are `(false, true)` and `(true, true)` for `(x, y)`. We can easily verify whether the assignment we've found is correct by simply filling in the values for `x` and `y` into the formula:
 
 ```
 (x + y) * (-x + y) for x = false and y = true
@@ -148,10 +148,13 @@ The eight-queens formula describes exactly the properties we're interested in: t
 ## Eurovision Song Contest
 
 Let's now try to solve real-world problems: the Eurovision Song Contest, the annual event where world politics and the music industry merge into a strangely colourful contest. During the finals each participating country can award points to other particpants in two separate rounds. The first points are awarded by a professional jury, where the ten top scoring countries are awarded with a score between 1 and 12 points. The second voting round is similar, only the jury is now the audience itself. Eventually each country will have rewarded at least ten and at most twenty other countries with some points.
-
-Historically some countries tend to vote for each other, forming so-called cliques. A clique is defined as a sub-set of vertices in a graph such that each vertex in the clique is adjacent to every other vertex in the clique. Finding these cliques is not that easy given the number of participants and the number of votes. The image below shows the voting behaviour in the 2021 edition of Eurovision.
+We can represent this voting behaviour in a network, where each node/vertex is a country, and each edge represents a country voting for an other country, as displayed in the image below:
 
 ![eurovision network](/assets/eurovision.png)
+
+It is a well known fact some countries tend to regularly vote for each other, forming so-called cliques.
+A clique is defined as a sub-set of vertices in a graph such that each vertex in the clique is adjacent to every other vertex in the clique. 
+Finding these cliques is not that easy given the number of participants and the number of votes. Determining what the largest cliques in the network are is even more difficult and infeasible to do by hand.
 
 Similar to the eight queens problem the cliques problem is easy to verify: for some given subset of vertices we can check whether each vertex contains edges to every other vertex in the subset. Some trivial cliques are easy to find, such as individual vertices, pairs of connected vertices and triangles. Finding the largest clique is a lot harder however, as checking for the largest clique means we must compare size of a candidate max clique to every other clique.
 
@@ -167,7 +170,7 @@ In the 2021 edition of Eurovision, Spain did not vote for Belgium. This means Sp
 ```
 
 We can easily repeat this procedure for every pair of vertices, yielding a large conjunction of clauses which we can evaluate in a SAT solver.
-Additionally we can restrict the solution to only show cliques such that no larger clique exists (max cliques):
+Additionally we can restrict the solution to only show cliques such that no larger clique exists (max cliques). For this we need a new operator in our syntax: the `forall` operator. This operator takes a list of (new) variables and returns `true` if for any possible arrangement of values in the variable list, the subsequent formula yields `true`.
 
 ```
 ...
@@ -178,7 +181,7 @@ forall v_Spain, v_Belgium, ... # (
 ) => [Spain, Belgium, ...] >= [v_Spain, v_Belgium, ...]
 ```
 
-The final formula is too large to show in this article but the maximal cliques found by the solver are displayed below:
+The final formula is too large to show in this article but can still be solved by my own solver, albeit somewhat less efficient compared to state-of-the-art solvers. After a few seconds we get the following result:
 
 ```
 Norway, Lithuania, Iceland, Malta, Italy, Ukraine, Finland;
@@ -186,6 +189,7 @@ Norway, Sweden, Lithuania, Iceland, Malta, Ukraine, Finland;
 Switzerland, Sweden, Lithuania, Iceland, Malta, Ukraine, Finland;
 ```
 
+In the 2021 edition of Eurovision there are therefore 3 cliques of 6 vertices and if our definition of cliques is correct we are guaranteed no larger cliques exist in the network.
 
 ## Complexity
 
