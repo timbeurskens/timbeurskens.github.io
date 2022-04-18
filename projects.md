@@ -1,5 +1,6 @@
 ---
 layout: blog
 collectionpage: posts
-title: My projects
+feature_text: |
+  # My projects
 ---
