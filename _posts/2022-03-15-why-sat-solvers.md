@@ -143,6 +143,16 @@ This is a formula written in a domain-specific-language I defined for one of my 
 
 The entire function is a conjunction (multiple sub-formulas, joined with an `and` operator `&`) of counting operations. A counting operation does exactly that: counting. The operation "counts" the number of `true` variables within square brackets and compares this value to a constant. `[a, b] = 1` means that either `a` or `b` is true, but not both and not neither. This formula can alternatively be expressed as `a xor b`.
 
+_Fun fact: proving the statement (1) `[a, b] = 1` is equal to (2) `a xor b` is easy; If statements 1 and 2 are equal then a bi-implication of statement 1 and 2 should yield `true` for any `a` and `b`._
+
+```bash
+$ rsbdd -t -e "[a, b] = 1 <=> a xor b"
+
+| a     | b     | *     |
+|-------|-------|-------|
+| Any   | Any   | True  |
+```
+
 The eight-queens formula describes exactly the properties we're interested in: there can be exactly one queen per row and column, and at most one queen can be placed per diagonal. If we feed this formula into our SAT solver, we can compute every valid assignment of the eight-queens problem of which there are 92 in total.
 
 ## Eurovision Song Contest
