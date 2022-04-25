@@ -16,3 +16,8 @@ If you want to check my own implementation of a boolean satisfiability solver in
 [Let me know](/about.md) what you think of it!
 
 Other projects, such as my Lindenmayer-system carpet-pattern generator, will be posted on this website somewhere in the future as well.
+
+All pictures used on this website are made by me.
+You can find more photos on my [Flickr](https://www.flickr.com/photos/timbeurskens) account.
+
+If you'd like to use these pictures yourself feel free to contact me!

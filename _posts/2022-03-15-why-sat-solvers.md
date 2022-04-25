@@ -153,7 +153,9 @@ $ rsbdd -t -e "[a, b] = 1 <=> a xor b"
 | Any   | Any   | True  |
 ```
 
-The eight-queens formula describes exactly the properties we're interested in: there can be exactly one queen per row and column, and at most one queen can be placed per diagonal. If we feed this formula into our SAT solver, we can compute every valid assignment of the eight-queens problem of which there are 92 in total.
+The eight-queens formula describes exactly the properties we're interested in: there can be exactly one queen per row and column, and at most one queen can be placed per diagonal. If we feed this formula into our SAT solver, we can compute every valid assignment of the eight-queens problem of which there are 92 in total. As an example, here is the first solution displayed on a chess board: 
+
+![eight queens solution](/assets/queens.svg)
 
 ## Eurovision Song Contest
 
