@@ -36,6 +36,7 @@ plugins:
 - jekyll-commonmark
 - jekyll-include-cache
 - jemoji
+- jekyll-environment-variables
 
 # 3. Gem settings
 paginate: 5 # jekyll-paginate > items per page
@@ -95,8 +96,7 @@ logo: "/assets/logos/logo.svg" # Site logo, also used in jekyll-seo-tag
 description: "This website showcases my projects" # Site description and default description, also used in jekyll-seo-tag
 url: "https://timbeurskens.github.io" # Site url, also used in jekyll-seo-tag
 baseurl: ""
-# repo: "https://github.com/timbeurskens/timbeurskens.github.io"
-email: "tim.beurskens@solarteameindhoven.nl"
+# repo: "https://github.com/timbeurskens/timbeurskens.github.io
 # disqus: "alembic-1" # Blog post comments, uncomment the option and set the site ID from your Disqus account
 # date_format: "%-d %B %Y" # Blog post date formatting using placeholder formatting
 # google_analytics: ""
