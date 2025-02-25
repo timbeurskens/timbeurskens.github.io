@@ -96,7 +96,8 @@ logo: "/assets/logos/logo.svg" # Site logo, also used in jekyll-seo-tag
 description: "This website showcases my projects" # Site description and default description, also used in jekyll-seo-tag
 url: "https://timbeurskens.github.io" # Site url, also used in jekyll-seo-tag
 baseurl: ""
-# repo: "https://github.com/timbeurskens/timbeurskens.github.io
+# repo: "https://github.com/timbeurskens/timbeurskens.github.io"
+email: "08fec5d68ca21c8b5f4cea84008dcb94"
 # disqus: "alembic-1" # Blog post comments, uncomment the option and set the site ID from your Disqus account
 # date_format: "%-d %B %Y" # Blog post date formatting using placeholder formatting
 # google_analytics: ""
